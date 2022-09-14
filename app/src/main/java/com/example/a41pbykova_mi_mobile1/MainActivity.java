@@ -12,7 +12,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import java.net.IDN;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             MI.addView(trMI);
 
             if(connection!=null) {
-                String query = "Select * From Musical_Instrument";
+                String query = "Select *From Musical_Instrument";
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while (resultSet.next()) {
