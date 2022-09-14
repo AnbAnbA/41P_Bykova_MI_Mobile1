@@ -1,5 +1,6 @@
 package com.example.a41pbykova_mi_mobile1;
 
+import android.annotation.SuppressLint;
 import android.os.StrictMode;
 import android.util.Log;
 
@@ -9,7 +10,7 @@ import java.sql.DriverManager;
 public class ConnectionHelper {
     String userName, userPassword, ip, port,dataBase;
 
-
+@SuppressLint("NewApi")
     public Connection connectionClass()
     {
         ip = "ngknn.ru";
