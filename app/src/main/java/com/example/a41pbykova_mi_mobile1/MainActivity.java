@@ -23,18 +23,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        GetTextFormSql();
     }
     public void AddMI(View v){
         startActivity(new Intent(this, Add_MI.class));
     }
 
-    public void GetTextFormSql(View v)
+    public void GetTextFormSql()
     {
         TableLayout MI = findViewById(R.id.tbMI);
         try {
             ConnectionHelper connectionHelper=new ConnectionHelper();
             connection=connectionHelper.connectionClass();
-            MI.removeAllViews();
+            /*MI.removeAllViews();
             TableRow trMI = new TableRow(MainActivity.this);
             TextView NameMI = new TextView(MainActivity.this);
             TextView ManufacturersMI = new TextView(MainActivity.this);
@@ -52,35 +53,48 @@ public class MainActivity extends AppCompatActivity {
                     TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.3f));
             trMI.addView(PriceMI, new TableRow.LayoutParams(
                     TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.3f));
-            MI.addView(trMI);
+            MI.addView(trMI);*/
 
             if(connection!=null) {
                 String query = "Select *From Musical_Instrument";
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
+
+                TableLayout dbOutput = findViewById(R.id.tbMI);
+                dbOutput.removeAllViews();
+
                 while (resultSet.next()) {
                     TableRow tr = new TableRow(MainActivity.this);
                     tr.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
                     TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.WRAP_CONTENT);
-                    TextView Name = new TextView(MainActivity.this);
-                    TextView Manufacturers = new TextView(MainActivity.this);
-                    TextView ManufacturerCountry = new TextView(MainActivity.this);
-                    TextView Price = new TextView(MainActivity.this);
 
-                    tr.addView(Name, new TableRow.LayoutParams(
-                            TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.3f));
-                    tr.addView(Manufacturers, new TableRow.LayoutParams(
-                            TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.3f));
-                    tr.addView(ManufacturerCountry, new TableRow.LayoutParams(
-                            TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.3f));
-                    tr.addView(Price, new TableRow.LayoutParams(
-                            TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.3f));
+                    TextView Name = new TextView(MainActivity.this);
+                    params.weight = 3.0f;
+                    Name.setLayoutParams(params);
+                    Name.setText(resultSet.getString(2));
+                    tr.addView(Name);
+
+                    TextView Manufacturers = new TextView(MainActivity.this);
+                    params.weight = 3.0f;
+                    Manufacturers.setLayoutParams(params);
+                    Manufacturers.setText(resultSet.getString(2));
+                    tr.addView(Manufacturers);
+
+                    TextView ManufacturerCountry = new TextView(MainActivity.this);
+                    params.weight = 3.0f;
+                    ManufacturerCountry.setLayoutParams(params);
+                    ManufacturerCountry.setText(resultSet.getString(2));
+                    tr.addView(ManufacturerCountry);
+
+                    TextView Price = new TextView(MainActivity.this);
+                    params.weight = 3.0f;
+                    Price.setLayoutParams(params);
+                    Price.setText(resultSet.getString(2));
+                    tr.addView(Price);
+
                     MI.addView(tr);
 
-                    NameMI.setText(resultSet.getString(2));
-                    ManufacturersMI.setText(resultSet.getString(3));
-                    ManufacturerCountryMI.setText(resultSet.getString(4));
-                    PriceMI.setText(resultSet.getString(5));
+
                 }
             }
             else{
