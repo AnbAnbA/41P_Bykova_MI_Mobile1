@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <TableLayout
         android:id="@+id/tbMI"
-        android:layout_width="0dp"
-        android:layout_height="430dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_width="395dp"
+        android:layout_height="500dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/btnView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,7 +25,7 @@
         android:layout_marginBottom="30dp"
         android:background="@color/purple_700"
         android:onClick="GetTextFormSql"
-        android:text=""
+        android:text="Вывести"
 
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -52,12 +53,13 @@
         android:id="@+id/txtHeaderView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="3dp"
         android:text=""
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tbMI"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

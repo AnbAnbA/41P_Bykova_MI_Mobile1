@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -44,13 +45,13 @@ public class MainActivity extends AppCompatActivity {
             ManufacturerCountryMI.setText("страна производителя");
             PriceMI.setText("Стоимость");
             trMI.addView(NameMI, new TableRow.LayoutParams(
-                    TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.5f));
+                    TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.3f));
             trMI.addView(ManufacturersMI, new TableRow.LayoutParams(
-                    TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.5f));
+                    TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.3f));
             trMI.addView(ManufacturerCountryMI, new TableRow.LayoutParams(
-                    TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.5f));
+                    TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.3f));
             trMI.addView(PriceMI, new TableRow.LayoutParams(
-                    TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.5f));
+                    TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.3f));
             MI.addView(trMI);
 
             if(connection!=null) {
@@ -59,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
                 ResultSet resultSet = statement.executeQuery(query);
                 while (resultSet.next()) {
                     TableRow tr = new TableRow(MainActivity.this);
+                    tr.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+                    TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.WRAP_CONTENT);
                     TextView Name = new TextView(MainActivity.this);
                     TextView Manufacturers = new TextView(MainActivity.this);
                     TextView ManufacturerCountry = new TextView(MainActivity.this);
