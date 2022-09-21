@@ -73,28 +73,28 @@ public class MainActivity extends AppCompatActivity {
                     TableRow.LayoutParams params = new TableRow.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
                     TextView Name = new TextView(this);
-                    params.weight = 3.0f;
+                    params.width = 310;
                     Name.setLayoutParams(params);
-                    Name.setText(resultSet.getString(1));
+                    Name.setText(resultSet.getString(2));
                     tr.addView(Name);
 
 
                     TextView Manufacturers = new TextView(this);
-                    params.weight = 3.0f;
+                    params.width = 310;
                     Manufacturers.setLayoutParams(params);
-                    Manufacturers.setText(resultSet.getString(2));
+                    Manufacturers.setText(resultSet.getString(3));
                     tr.addView(Manufacturers);
 
                      TextView ManufacturerCountry = new TextView(this);
-                    params.weight = 3.0f;
+                    params.width = 310;
                     ManufacturerCountry.setLayoutParams(params);
-                    ManufacturerCountry.setText(resultSet.getString(3));
+                    ManufacturerCountry.setText(resultSet.getString(4));
                     tr.addView(ManufacturerCountry);
 
                     TextView Price = new TextView(this);
-                    params.weight = 3.0f;
+                    params.width = 300;
                     Price.setLayoutParams(params);
-                    Price.setText(resultSet.getString(4));
+                    Price.setText(resultSet.getString(5));
                     tr.addView(Price);
 
                     tbMI.addView(tr);
