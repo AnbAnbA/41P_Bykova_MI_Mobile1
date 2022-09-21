@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
                     TextView Name = new TextView(this);
                     params.width = 310;
+                    params.height=100;
                     Name.setLayoutParams(params);
                     Name.setText(resultSet.getString(2));
                     tr.addView(Name);
@@ -81,18 +82,21 @@ public class MainActivity extends AppCompatActivity {
 
                     TextView Manufacturers = new TextView(this);
                     params.width = 310;
+                    params.height=100;
                     Manufacturers.setLayoutParams(params);
                     Manufacturers.setText(resultSet.getString(3));
                     tr.addView(Manufacturers);
 
                      TextView ManufacturerCountry = new TextView(this);
                     params.width = 310;
+                    params.height=100;
                     ManufacturerCountry.setLayoutParams(params);
                     ManufacturerCountry.setText(resultSet.getString(4));
                     tr.addView(ManufacturerCountry);
 
                     TextView Price = new TextView(this);
                     params.width = 300;
+                    params.height=100;
                     Price.setLayoutParams(params);
                     Price.setText(resultSet.getString(5));
                     tr.addView(Price);
