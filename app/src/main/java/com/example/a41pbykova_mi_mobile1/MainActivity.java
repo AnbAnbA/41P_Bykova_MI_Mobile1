@@ -23,15 +23,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        GetTextFormSql();
+        //GetTextFormSql();
     }
+
+
+
     public void AddMI(View v){
         startActivity(new Intent(this, Add_MI.class));
     }
 
-    public void GetTextFormSql()
-    {
+
+    public void GetTextFormSql(View view) {
         TableLayout MI = findViewById(R.id.tbMI);
+
+
         try {
             ConnectionHelper connectionHelper=new ConnectionHelper();
             connection=connectionHelper.connectionClass();
@@ -60,37 +65,38 @@ public class MainActivity extends AppCompatActivity {
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
 
-                TableLayout dbOutput = findViewById(R.id.tbMI);
-                dbOutput.removeAllViews();
+                TableLayout tbMI = findViewById(R.id.tbMI);
+                tbMI.removeAllViews();
 
                 while (resultSet.next()) {
-                    TableRow tr = new TableRow(MainActivity.this);
-                    tr.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
-                    TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.WRAP_CONTENT);
+                    TableRow tr = new TableRow(this);
+                    tr.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                    TableRow.LayoutParams params = new TableRow.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-                    TextView Name = new TextView(MainActivity.this);
+                    TextView Name = new TextView(this);
                     params.weight = 3.0f;
                     Name.setLayoutParams(params);
                     Name.setText(resultSet.getString(2));
                     tr.addView(Name);
 
-                    TextView Manufacturers = new TextView(MainActivity.this);
+
+                    TextView Manufacturers = new TextView(this);
                     params.weight = 3.0f;
                     Manufacturers.setLayoutParams(params);
                     Manufacturers.setText(resultSet.getString(2));
                     tr.addView(Manufacturers);
 
-                    TextView ManufacturerCountry = new TextView(MainActivity.this);
+                     /*TextView ManufacturerCountry = new TextView(this);
                     params.weight = 3.0f;
                     ManufacturerCountry.setLayoutParams(params);
                     ManufacturerCountry.setText(resultSet.getString(2));
                     tr.addView(ManufacturerCountry);
 
-                    TextView Price = new TextView(MainActivity.this);
+                    TextView Price = new TextView(this);
                     params.weight = 3.0f;
                     Price.setLayoutParams(params);
                     Price.setText(resultSet.getString(2));
-                    tr.addView(Price);
+                    tr.addView(Price);*/
 
                     MI.addView(tr);
 
@@ -105,5 +111,4 @@ public class MainActivity extends AppCompatActivity {
             Log.e(ConnectionResult, ex.getMessage());
         }
     }
-
 }
