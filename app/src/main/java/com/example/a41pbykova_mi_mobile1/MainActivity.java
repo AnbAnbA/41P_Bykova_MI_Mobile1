@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                     Manufacturers.setText(resultSet.getString(2));
                     tr.addView(Manufacturers);
 
-                     /*TextView ManufacturerCountry = new TextView(this);
+                     /*/*TextView ManufacturerCountry = new TextView(this);
                     params.weight = 3.0f;
                     ManufacturerCountry.setLayoutParams(params);
                     ManufacturerCountry.setText(resultSet.getString(2));
