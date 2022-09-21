@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void GetTextFormSql(View view) {
-        TableLayout MI = findViewById(R.id.tbMI);
 
 
         try {
@@ -76,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                     TextView Name = new TextView(this);
                     params.weight = 3.0f;
                     Name.setLayoutParams(params);
-                    Name.setText(resultSet.getString(2));
+                    Name.setText(resultSet.getString(1));
                     tr.addView(Name);
 
 
@@ -86,19 +85,19 @@ public class MainActivity extends AppCompatActivity {
                     Manufacturers.setText(resultSet.getString(2));
                     tr.addView(Manufacturers);
 
-                     /*/*TextView ManufacturerCountry = new TextView(this);
+                     TextView ManufacturerCountry = new TextView(this);
                     params.weight = 3.0f;
                     ManufacturerCountry.setLayoutParams(params);
-                    ManufacturerCountry.setText(resultSet.getString(2));
+                    ManufacturerCountry.setText(resultSet.getString(3));
                     tr.addView(ManufacturerCountry);
 
                     TextView Price = new TextView(this);
                     params.weight = 3.0f;
                     Price.setLayoutParams(params);
-                    Price.setText(resultSet.getString(2));
-                    tr.addView(Price);*/
+                    Price.setText(resultSet.getString(4));
+                    tr.addView(Price);
 
-                    MI.addView(tr);
+                    tbMI.addView(tr);
 
 
                 }
