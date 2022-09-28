@@ -6,35 +6,51 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.sql.SQLException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 public class MainActivity extends AppCompatActivity {
     Connection connection;
+    View v;
+
+    List<Mask> data;
     String ConnectionResult ="";
+    ListView listView;
+    AdapterMask pAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //GetTextFormSql();
+        v = findViewById(com.google.android.material.R.id.ghost_view);
+        GetTextFormSql(v);
     }
 
-
+    public void enterMobile() {
+        pAdapter.notifyDataSetInvalidated();
+        listView.setAdapter(pAdapter);
+    }
 
     public void AddMI(View v){
         startActivity(new Intent(this, Add_MI.class));
     }
 
 
-    public void GetTextFormSql(View view) {
-
+    public void GetTextFormSql(View v) {
+        data = new ArrayList<Mask>();
+        listView = findViewById(R.id.lvData);
+        pAdapter = new AdapterMask(MainActivity.this, data);
 
         try {
             ConnectionHelper connectionHelper=new ConnectionHelper();
@@ -64,46 +80,16 @@ public class MainActivity extends AppCompatActivity {
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
 
-                TableLayout tbMI = findViewById(R.id.tbMI);
-                tbMI.removeAllViews();
+
+
 
                 while (resultSet.next()) {
-                    TableRow tr = new TableRow(this);
-                    tr.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                    TableRow.LayoutParams params = new TableRow.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-                    TextView Name = new TextView(this);
-                    params.width = 310;
-                    params.height=100;
-                    Name.setLayoutParams(params);
-                    Name.setText(resultSet.getString(2));
-                    tr.addView(Name);
+                    Mask tempMask=new Mask
+                            (resultSet.getInt("ID"),
+                                    resultSet.getString("name_of_MI"),
 
 
-                    TextView Manufacturers = new TextView(this);
-                    params.width = 310;
-                    params.height=100;
-                    Manufacturers.setLayoutParams(params);
-                    Manufacturers.setText(resultSet.getString(3));
-                    tr.addView(Manufacturers);
-
-                     TextView ManufacturerCountry = new TextView(this);
-                    params.width = 310;
-                    params.height=100;
-                    ManufacturerCountry.setLayoutParams(params);
-                    ManufacturerCountry.setText(resultSet.getString(4));
-                    tr.addView(ManufacturerCountry);
-
-                    TextView Price = new TextView(this);
-                    params.width = 300;
-                    params.height=100;
-                    Price.setLayoutParams(params);
-                    Price.setText(resultSet.getString(5));
-                    tr.addView(Price);
-
-                    tbMI.addView(tr);
-
-
+                            );
                 }
             }
             else{

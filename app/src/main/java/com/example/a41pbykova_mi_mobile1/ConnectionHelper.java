@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class ConnectionHelper {
+    Connection connection;
     String userName, userPassword, ip, port,dataBase;
 
 @SuppressLint("NewApi")
